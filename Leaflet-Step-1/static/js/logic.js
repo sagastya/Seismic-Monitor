@@ -16,6 +16,32 @@ function createFeatures(earthquakeData) {
             "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
     }
 
+
+    // Set up the legend
+    var legend = L.control({ position: "bottomright" });
+    legend.onAdd = function () {
+        var div = L.DomUtil.create("div", "info legend");
+        var limits = geojson.options.limits;
+        var colors = geojson.options.colors;
+        var labels = [];
+
+        // Add min & max
+        var legendInfo = "<h1>EarthQuake Magnitude</h1>" +
+            "<div class=\"labels\">" +
+            "<div class=\"min\">" + limits[0] + "</div>" +
+            "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
+            "</div>";
+
+        div.innerHTML = legendInfo;
+
+        limits.forEach(function (limit, index) {
+            labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
+        });
+
+        div.innerHTML += "<ul>" + labels.join("") + "</ul>";
+        return div;
+    };
+
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
     function markerSize() {
@@ -24,10 +50,23 @@ function createFeatures(earthquakeData) {
         return parseInt(mag) * 5;
     };
 
+    function getColor(d) {
+        parseInt(d);
+        return d > 6 ? '#800026' :
+               d > 5 ? '#BD0026' :
+               d > 4 ? '#E31A1C' :
+               d > 3 ? '#FC4E2A' :
+               d > 2 ? '#FD8D3C' :
+               d > 1 ? '#FEB24C' :
+               d > 0.5 ? '#FED976' :
+                         '#FFEDA0';
+    };
+
     var geojsonMarkerOptions = {
         radius: 8,
         // radius: markerSize,
         fillColor: "#ff7800",
+        // fillColor: getColor(feature.properties.mag),
         color: "#000",
         weight: 1,
         opacity: 1,
@@ -82,5 +121,5 @@ function createMap(earthquakes) {
 
     L.control.layers(baseMaps, overlayMaps, {
         collapsed: false
-      }).addTo(myMap);
+    }).addTo(myMap);
 }
