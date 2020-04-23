@@ -3,25 +3,30 @@ var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_we
 d3.json(queryUrl, function (data) {
     createFeatures(data.features);
 });
-function markerSize(magnitude) {
-    return parseInt(magnitude) * 100;
-  };
+
+
 
 function createFeatures(earthquakeData) {
 
     // Define a function we want to run once for each feature in the features array
     // Give each feature a popup describing the place and time of the earthquake
     function onEachFeature(feature, layer) {
-        console.log(feature.geometry.coordinates);
+        // console.log(feature.geometry.coordinates);
         layer.bindPopup("<h3>" + feature.properties.place +
             "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
     }
 
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
+    function markerSize() {
+        console.log(feature.properties.mag);
+        var mag = feature.properties.mag;
+        return parseInt(mag) * 5;
+    };
 
     var geojsonMarkerOptions = {
         radius: 8,
+        // radius: markerSize,
         fillColor: "#ff7800",
         color: "#000",
         weight: 1,
