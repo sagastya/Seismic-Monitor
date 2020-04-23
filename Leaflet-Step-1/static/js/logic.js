@@ -25,14 +25,7 @@ function createFeatures(earthquakeData) {
 
 function createMap(earthquakes) {
 
-    // Define streetmap and darkmap layers
-    var satellitemap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-        maxZoom: 18,
-        id: "mapbox.streets-satellite",
-        accessToken: API_KEY
-    });
-
+    // Define lightmap and satellitemap layers
     var lightmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
         attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
         maxZoom: 18,
@@ -40,10 +33,17 @@ function createMap(earthquakes) {
         accessToken: API_KEY
     });
 
+    var satellitemap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+        maxZoom: 18,
+        id: "mapbox.streets-satellite",
+        accessToken: API_KEY
+    });
+
     // Define a baseMaps object to hold our base layers
     var baseMaps = {
-        "Satellite": satellitemap,
-        "Grayscale": lightmap
+        "Grayscale": lightmap,
+        "Satellite": satellitemap
     };
 
     // Create overlay object to hold our overlay layer
@@ -55,7 +55,7 @@ function createMap(earthquakes) {
     var myMap = L.map("map", {
         center: [37.09, -95.71],
         zoom: 5,
-        layers: [streetmap, earthquakes]
+        layers: [lightmap, earthquakes]
     });
 
     L.control.layers(baseMaps, overlayMaps, {
