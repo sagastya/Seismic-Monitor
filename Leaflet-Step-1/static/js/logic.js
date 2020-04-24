@@ -71,6 +71,7 @@ d3.json(queryUrl, function (data) {
         var limits = geojson.options.limits;
         var colors = geojson.options.colors;
         var labels = [];
+        var categories = ['0-1','1-2','2-3','3-4','4-5','5+']
 
         // Add min & max
         var legendInfo = "<h1>Earthquake Magnitude</h1>" +
