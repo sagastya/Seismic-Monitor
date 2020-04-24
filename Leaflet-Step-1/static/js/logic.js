@@ -56,7 +56,8 @@ d3.json(queryUrl, function (data) {
         // Binding a pop-up to each layer
         onEachFeature: function (feature, layer) {
             layer.bindPopup("<h3>" + feature.properties.place +
-                "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
+                "</h3><hr><p>" + "Magnitude: " + feature.properties.mag + 
+                "</p><p>" + new Date(feature.properties.time) + "</p>");
         },
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, geojsonMarkerOptions);
@@ -72,8 +73,7 @@ d3.json(queryUrl, function (data) {
         var labels = [];
 
         // Add min & max
-        var legendInfo =
-            // "<h1>Median Income</h1>" +
+        var legendInfo = "<h1>Earthquake Magnitude</h1>" +
             "<div class=\"labels\">" +
             "<div class=\"min\">" + limits[0] + "</div>" +
             "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
