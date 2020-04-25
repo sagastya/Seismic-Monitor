@@ -8,3 +8,7 @@ body,
 html {
   height: 100%;
 }
+
+#legend {
+  list-style-type: none;
+}
