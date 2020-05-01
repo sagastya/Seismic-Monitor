@@ -14,7 +14,7 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(myMap);
 
 d3.json(queryUrl, function (data) {
-    // createFeatures(data.features);
+    // console.log(data.features);
     console.log(data);
     var geojson;
 
@@ -59,6 +59,7 @@ d3.json(queryUrl, function (data) {
                 "</p><p>" + new Date(feature.properties.time) + "</p>");
         },
         pointToLayer: function (feature, latlng) {
+
             return L.circleMarker(latlng, geojsonMarkerOptions);
         }
     }).addTo(myMap);
@@ -66,28 +67,20 @@ d3.json(queryUrl, function (data) {
     // Set up the legend
     var legend = L.control({ position: "bottomright" });
     legend.onAdd = function () {
-        var div = L.DomUtil.create("div", "info legend");
+        var div = L.DomUtil.create('div', 'info legend');
         var colors = geojson.options.colors;
-        var labels = [];
         var categories = ['0-1', '1-2', '2-3', '3-4', '4-5', '5+']
 
-        // Add min & max
-        var legendInfo = "<h1>Scale</h1>" +
-            "<div class=\"labels\">" +
-            "</div>";
-
-        div.innerHTML = legendInfo;
-
         for (var i = 0; i < categories.length; i++) {
-            labels.push("<li style=\"background-color: " + colors[i] + "\"><span>" + categories[i] + "</span></li>");
+            div.innerHTML +=
+                '<i style="background:' + colors[i] + '"></i> ' 
+                + categories[i] + '<br />';
         }
-        console.log(labels);
-
-        div.innerHTML += "<ul id=\"legend\">" + labels.join("") + "</ul>";
         return div;
     };
     // Adding legend to the map
     legend.addTo(myMap);
+    
     // createMap(geojson, legend);
 });
 
