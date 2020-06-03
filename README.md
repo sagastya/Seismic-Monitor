@@ -1,2 +1,3 @@
-# Seismic Monitor - Mapping Earthquakes with Leaflet
+# Seismic Monitor
+Mapping Earthquakes with Leaflet
 
