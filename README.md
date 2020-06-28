@@ -14,7 +14,7 @@ Add a number of base maps to choose from as well as separate out the two differe
   1. HTML/CSS
   2. JavaScript
        Libraries:
-        * d3.js
+        * D3.js
         * Leaflet.js
   3. Map API:
        * OpenStreetMap
