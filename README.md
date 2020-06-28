@@ -10,3 +10,9 @@ The data API endpoint used from the USGS GeoJSON Feed Page is 'All Earthquakes f
 Plot a second data set on the map to illustrate the relationship between tectonic plates and seismic activity. 
 Add a number of base maps to choose from as well as separate out the two different data sets into overlays that can be turned on and off independently. Add layer controls to the map. 
 
+### Tools used in this Project:
+    1. JavaScript
+       Libraries:
+        * d3.js
+        * Leaflet.js
+
