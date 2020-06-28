@@ -11,14 +11,13 @@ Plot a second data set on the map to illustrate the relationship between tectoni
 Add a number of base maps to choose from as well as separate out the two different data sets into overlays that can be turned on and off independently. Add layer controls to the map. 
 
 ### Tools used in this Project:
-    1. HTML/CSS
-        * Bootstrap
-    2. JavaScript
+  1. HTML/CSS
+  2. JavaScript
        Libraries:
         * d3.js
         * Leaflet.js
-    3. Map API:
-        * OpenStreetMap
-    4. Data API:
-        * USGS GeoJSON Feed Page
+  3. Map API:
+       * OpenStreetMap
+  4. Data API:
+       * USGS GeoJSON Feed Page
 
